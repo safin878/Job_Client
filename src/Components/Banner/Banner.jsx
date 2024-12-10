@@ -1,17 +1,3 @@
-// import React from "react";
-
-// const Banner = () => {
-//   return (
-//     <div>
-//       <img
-//         src="https://i.postimg.cc/7hr7xP5n/Leonardo-Kino-XL-japanes-vocabulary-learning-website-banner-ma-0.jpg"
-//         alt=""
-//       />
-//     </div>
-//   );
-// };
-
-// export default Banner;
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 

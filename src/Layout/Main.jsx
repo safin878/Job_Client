@@ -1,15 +1,20 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../Shared/Footer/Footer";
 import NavBar from "./../Shared/NavBar/NavBar";
 import Banner from "./../Components/Banner/Banner";
 
 const Main = () => {
+  const location = useLocation();
+
+  const noHeaderFooter =
+    location.pathname.includes("login") ||
+    location.pathname.includes("register");
+
   return (
     <div>
-      <NavBar></NavBar>
-      <Banner></Banner>
+      {noHeaderFooter || <NavBar></NavBar>}
       <Outlet /> {/* This will render the child routes */}
-      <Footer></Footer>
+      {noHeaderFooter || <Footer></Footer>}
     </div>
   );
 };
