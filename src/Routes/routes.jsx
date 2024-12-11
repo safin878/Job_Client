@@ -6,6 +6,8 @@ import Register from "../Pages/Register/Register";
 import Lessons from "../Pages/Home/Lessons/Lessons";
 import Tutorials from "../Pages/Home/Tutorials/Tutorials";
 import PrivateRoute from "./PrivateRoute";
+import Homed from "../Dasboard/Homed";
+import Dashboard from "./../Dasboard/Dasboard";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +43,11 @@ const router = createBrowserRouter([
         element: <Register />,
       },
     ],
+  },
+
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
   },
 ]);
 

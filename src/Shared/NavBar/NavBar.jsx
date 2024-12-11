@@ -173,6 +173,10 @@ const NavBar = () => {
                   </Link>
                 )} */}
 
+                <Link to="/dashboard">
+                  <Dropdown.Item>Dashboard</Dropdown.Item>
+                </Link>
+
                 <Dropdown.Divider />
                 <Dropdown.Item onClick={handleLogOut}>Sign out</Dropdown.Item>
               </Dropdown>
