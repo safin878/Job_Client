@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./NavBar.css";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
+import useAuth from "../../Hooks/useAuth/useAuth";
+import { Dropdown, Avatar } from "flowbite-react";
+import Swal from "sweetalert2";
+// import useRole from "./../../Hooks/useRole/useRole";
 
 const NavBar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { User, logOut } = useAuth();
+  // const [role, isLoading, refetch] = useRole();
 
   const handleDropdownToggle = () => {
     setIsDropdownOpen((prev) => !prev);
@@ -26,17 +32,42 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleLogOut = () => {
+    logOut();
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Sign Out Successful",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  };
+
   const navOptions = (
     <>
       <li>
-        <a href="#lessons" className="font-semibold">
+        <NavLink
+          to="/lessons"
+          className={({ isActive }) =>
+            isActive
+              ? "font-semibold border-b-4 border-blue-500"
+              : "font-semibold"
+          }
+        >
           Lessons
-        </a>
+        </NavLink>
       </li>
       <li>
-        <a href="#tutorials" className="font-semibold">
+        <NavLink
+          to="/tutorials"
+          className={({ isActive }) =>
+            isActive
+              ? "font-semibold border-b-4 border-blue-500"
+              : "font-semibold"
+          }
+        >
           Tutorials
-        </a>
+        </NavLink>
       </li>
     </>
   );
@@ -102,13 +133,51 @@ const NavBar = () => {
         </div>
 
         {/* Navbar end */}
-        <div className="navbar-end gap-2">
+        {/* <div className="navbar-end gap-2">
           <Link to="/login">
             <a className="btn">Login</a>
           </Link>
           <Link to="/register">
             <a className="btn">Register</a>
           </Link>
+        </div> */}
+        <div className="navbar-end gap-3">
+          {!User && (
+            <div className="flex gap-4">
+              <Link to="/login">
+                <button className="btn  ">Sign In</button>
+              </Link>
+              <Link to="/register">
+                <button className="btn  ">Sign Up</button>
+              </Link>
+            </div>
+          )}
+          {User && (
+            <div>
+              <Dropdown
+                arrowIcon={false}
+                inline
+                label={
+                  <Avatar alt="User settings" img={User?.photoURL} rounded />
+                }
+              >
+                <Dropdown.Header>
+                  <span className="block text-sm">{User?.displayName}</span>
+                  <span className="block truncate text-sm font-medium">
+                    {User?.email}
+                  </span>
+                </Dropdown.Header>
+                {/* {role === "admin" && (
+                  <Link to="/dashboard/adminProfile">
+                    <Dropdown.Item>Dashboard</Dropdown.Item>
+                  </Link>
+                )} */}
+
+                <Dropdown.Divider />
+                <Dropdown.Item onClick={handleLogOut}>Sign out</Dropdown.Item>
+              </Dropdown>
+            </div>
+          )}
         </div>
       </div>
     </div>
