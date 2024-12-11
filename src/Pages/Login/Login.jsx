@@ -107,10 +107,10 @@ const Login = () => {
               </div>
               <div className="mt-3 text-xs flex justify-between items-center text-[#002D74]">
                 <p>Do not have an account?</p>
-                <Link to="/singUp">
+                <Link to="/register">
                   {" "}
                   <button className="py-2 px-5 bg-[#aa865c] text-white hover:bg-color-3 border rounded-xl hover:scale-110 duration-300">
-                    Sign Up
+                    Register
                   </button>
                 </Link>
               </div>

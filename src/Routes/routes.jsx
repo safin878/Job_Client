@@ -6,8 +6,13 @@ import Register from "../Pages/Register/Register";
 import Lessons from "../Pages/Home/Lessons/Lessons";
 import Tutorials from "../Pages/Home/Tutorials/Tutorials";
 import PrivateRoute from "./PrivateRoute";
-import Homed from "../Dasboard/Homed";
+import LessonsD from "../Dasboard/LessonsD";
 import Dashboard from "./../Dasboard/Dasboard";
+import Add_Lessons from "./../Dasboard/Add_Lessons";
+import Add_Vocabularies from "./../Dasboard/Add_Vocabularies";
+import LManage from "./../Dasboard/LManage";
+import VManage from "./../Dasboard/VManage";
+import Users from "./../Dasboard/Users";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +53,32 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
+    children: [
+      {
+        path: "lessonsD",
+        element: <LessonsD></LessonsD>,
+      },
+      {
+        path: "addLessons",
+        element: <Add_Lessons></Add_Lessons>,
+      },
+      {
+        path: "addVocab",
+        element: <Add_Vocabularies></Add_Vocabularies>,
+      },
+      {
+        path: "users",
+        element: <Users></Users>,
+      },
+      {
+        path: "LManage",
+        element: <LManage></LManage>,
+      },
+      {
+        path: "VManage",
+        element: <VManage></VManage>,
+      },
+    ],
   },
 ]);
 

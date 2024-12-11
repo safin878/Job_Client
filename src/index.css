@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+body {
+  padding-top: 0 !important; /* Override any top padding */
+  margin: 0; /* Reset any margin */
+}
+
+* {
+  box-sizing: border-box; /* Ensure consistent box model */
+}

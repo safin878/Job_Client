@@ -171,10 +171,10 @@ const Register = () => {
                 </div>
                 <div className="mt-3 text-xs flex justify-between items-center text-[#002D74]">
                   <p>Do you have an account?</p>
-                  <Link to="/singIn">
+                  <Link to="/login">
                     {" "}
                     <button className="py-2 px-5   bg-[#aa865c] text-white border rounded-xl hover:scale-110 duration-300">
-                      Sing In
+                      Login
                     </button>
                   </Link>
                 </div>
