@@ -31,7 +31,11 @@ const Register = () => {
   const onSubmit = async (data) => {
     setLoading(true);
     try {
-      const result = await CreateUser(data.email, data.password);
+      // Convert email to lowercase
+      const emailLowerCase = data.email.toLowerCase();
+
+      // Create user with the lowercase email
+      const result = await CreateUser(emailLowerCase, data.password);
       const loggedUser = result.user;
       console.log(loggedUser);
 
@@ -41,13 +45,15 @@ const Register = () => {
         photoURL: data.photo,
         displayName: data.name,
       });
+
       const userInfo = {
         name: data.name,
-        email: data.email,
+        email: emailLowerCase, // Ensure email is in lowercase
         password: data.password,
         photo: data.photo,
         role: "user",
       };
+
       const res = await axiosPublic.post("/users", userInfo);
       if (res.data.insertedId) {
         console.log("user added");

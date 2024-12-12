@@ -3,6 +3,7 @@ import useAuth from "../../Hooks/useAuth/useAuth";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import SocialLogin from "../../Components/Banner/SocialLogin/SocialLogin";
+import useAxiosSecure from "../../Hooks/useAxiosSecure/useAxiosSecure";
 
 const LoadingScreen = () => (
   <div className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-75 z-50">
@@ -15,7 +16,8 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [loading, setLoading] = useState(false);
-  const from = location.state?.from?.pathname || "/";
+  const axiosSecure = useAxiosSecure();
+  const from = location.state?.from?.pathname || "/lessons";
 
   const handelSingIn = async (e) => {
     e.preventDefault();
@@ -23,11 +25,16 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+
     try {
       const result = await SingIn(email, password);
       const user = result.user;
       console.log(user);
+
+      // Fetch user role
+      const { data } = await axiosSecure.get(`/users/${user?.email}`);
+      const userRole = data.role;
+
       Swal.fire({
         position: "center",
         icon: "success",
@@ -35,7 +42,13 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      navigate(from, { replace: true });
+
+      // Redirect based on role
+      if (userRole === "admin") {
+        navigate("/dashboard/lessonsD", { replace: true });
+      } else {
+        navigate(from, { replace: true });
+      }
     } catch (error) {
       console.error("Error during sign in", error);
       Swal.fire({
@@ -53,11 +66,9 @@ const Login = () => {
     <div>
       {loading && <LoadingScreen />}
       <div className="h-[75px]"></div>
-      <div>
+      <div className="p-6">
         <section className="min-h-screen flex items-center justify-center">
-          {/* login container */}
           <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
-            {/* form */}
             <div className="md:w-1/2 px-8 md:px-16">
               <h2 className="font-bold text-2xl text-[#ce9451]">
                 Sign In Now!
@@ -108,14 +119,12 @@ const Login = () => {
               <div className="mt-3 text-xs flex justify-between items-center text-[#002D74]">
                 <p>Do not have an account?</p>
                 <Link to="/register">
-                  {" "}
                   <button className="py-2 px-5 bg-[#aa865c] text-white hover:bg-color-3 border rounded-xl hover:scale-110 duration-300">
                     Register
                   </button>
                 </Link>
               </div>
             </div>
-            {/* image */}
             <div className="md:block hidden w-1/2">
               <img
                 className="rounded-2xl"

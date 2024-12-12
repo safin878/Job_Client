@@ -110,7 +110,7 @@ const NavBar = () => {
             )}
           </div>
 
-          <Link to="/">
+          <Link to="/lessons">
             <div className="text-xl flex items-center justify-center gap-2 ">
               <div>
                 <img
@@ -132,15 +132,6 @@ const NavBar = () => {
           <ul className="menu menu-horizontal px-1">{navOptions}</ul>
         </div>
 
-        {/* Navbar end */}
-        {/* <div className="navbar-end gap-2">
-          <Link to="/login">
-            <a className="btn">Login</a>
-          </Link>
-          <Link to="/register">
-            <a className="btn">Register</a>
-          </Link>
-        </div> */}
         <div className="navbar-end gap-3">
           {!User && (
             <div className="flex gap-4">
@@ -167,17 +158,7 @@ const NavBar = () => {
                     {User?.email}
                   </span>
                 </Dropdown.Header>
-                {/* {role === "admin" && (
-                  <Link to="/dashboard/adminProfile">
-                    <Dropdown.Item>Dashboard</Dropdown.Item>
-                  </Link>
-                )} */}
 
-                <Link to="/dashboard">
-                  <Dropdown.Item>Dashboard</Dropdown.Item>
-                </Link>
-
-                <Dropdown.Divider />
                 <Dropdown.Item onClick={handleLogOut}>Sign out</Dropdown.Item>
               </Dropdown>
             </div>

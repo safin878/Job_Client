@@ -14,6 +14,7 @@ import LManage from "./../Dasboard/LManage";
 import VManage from "./../Dasboard/VManage";
 import Users from "./../Dasboard/Users";
 import LessonCard from "./../Pages/LessonCard/LessonCard";
+import NoHomeRoutes from "./NoHomeRoutes";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: (
+          <NoHomeRoutes>
+            <Login></Login>
+          </NoHomeRoutes>
+        ),
       },
       {
         path: "/lessons",
@@ -50,7 +55,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/addLessons/:lessonNumber",
-        element: <LessonCard />,
+        element: (
+          <PrivateRoute>
+            <LessonCard />
+          </PrivateRoute>
+        ),
       },
     ],
   },

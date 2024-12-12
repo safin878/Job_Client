@@ -7,7 +7,7 @@ const Users = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
 
-  const { data: users = [] } = useQuery({
+  const { data: users = [], isLoading } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const response = await axiosSecure.get("/users");
@@ -56,6 +56,14 @@ const Users = () => {
       }
     });
   };
+
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-75 z-50">
+        <span className="loading loading-bars loading-lg text-blue-500"></span>
+      </div>
+    );
+  }
 
   return (
     <div>

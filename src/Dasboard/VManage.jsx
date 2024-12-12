@@ -10,13 +10,24 @@ const VManage = () => {
   const axiosSecure = useAxiosSecure();
   const [selectedLesson, setSelectedLesson] = useState(""); // State for filtering
 
-  const { data: Vocabularies = [], refetch } = useQuery({
+  const {
+    data: Vocabularies = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["Vocabularies"],
     queryFn: async () => {
       const response = await axiosSecure.get("/addVocabulary");
       return response.data;
     },
   });
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-75 z-50">
+        <span className="loading loading-bars loading-lg text-blue-500"></span>
+      </div>
+    );
+  }
 
   const handleFilterChange = (e) => {
     setSelectedLesson(e.target.value); // Update selected lesson

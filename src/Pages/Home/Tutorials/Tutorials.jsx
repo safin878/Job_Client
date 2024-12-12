@@ -1,4 +1,20 @@
+import { useState, useEffect } from "react";
 const Tutorials = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000); // Adjust time as needed
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-75 z-50">
+        <span className="loading loading-bars loading-lg text-blue-500"></span>
+      </div>
+    );
+  }
+
   return (
     <div className="container mx-auto ">
       <div className="h-[80px]"></div>

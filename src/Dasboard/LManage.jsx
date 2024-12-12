@@ -8,13 +8,25 @@ import { MdDeleteOutline } from "react-icons/md";
 const LManage = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: Lessons = [], refetch } = useQuery({
+  const {
+    data: Lessons = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["Lessons"],
     queryFn: async () => {
       const response = await axiosSecure.get("/addLessons");
       return response.data;
     },
   });
+
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-75 z-50">
+        <span className="loading loading-bars loading-lg text-blue-500"></span>
+      </div>
+    );
+  }
 
   const handlUpadate = async (Lesson) => {
     const { value: formValues } = await Swal.fire({
