@@ -11,6 +11,7 @@ const Add_Vocabularies = () => {
     e.preventDefault();
     const announce = {
       Word: e.target.Word.value,
+      Meaning: e.target.Meaning.value,
       Pronunciation: e.target.Pronunciation.value,
       When_to_Say: e.target.When_to_Say.value,
       Lesson_No: e.target.Lesson_No.value,
@@ -74,6 +75,18 @@ const Add_Vocabularies = () => {
                 </div>
                 <div className="form-control">
                   <label className="label">
+                    <span className="label-text">Meaning</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="Meaning"
+                    placeholder="Please Write a Meaning"
+                    className="input input-bordered"
+                    required
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
                     <span className="label-text">Pronunciation</span>
                   </label>
                   <input
@@ -108,7 +121,7 @@ const Add_Vocabularies = () => {
                     required
                   />
                 </div>
-                <div className="form-control col-span-2">
+                <div className="form-control ">
                   <label className="label">
                     <span className="label-text ">Admin Email</span>
                   </label>

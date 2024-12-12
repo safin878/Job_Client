@@ -1,15 +1,3 @@
-// import React from "react";
-
-// const LManage = () => {
-//   return (
-//     <div>
-//       <h1>L Manage</h1>
-//     </div>
-//   );
-// };
-
-// export default LManage;
-
 import Swal from "sweetalert2";
 import SectionTitle from "../Components/SectionTitle/SectionTitle";
 import { useQuery } from "@tanstack/react-query";
@@ -30,7 +18,7 @@ const LManage = () => {
 
   const handlUpadate = async (Lesson) => {
     const { value: formValues } = await Swal.fire({
-      title: "Update Coupon Details",
+      title: "Update Lesson Details",
       html:
         `<input id="Lesson_Name" class="swal2-input" placeholder="Lesson Name" value="${Lesson.Lesson_Name}">` +
         `<input id="Lesson_Number" class="swal2-input" placeholder="Lesson Number" value="${Lesson.Lesson_Number}">`,

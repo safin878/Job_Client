@@ -62,6 +62,13 @@ const Register = () => {
         navigate("/");
       }
     } catch (error) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "User Already Exist",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       console.error("Error during sign up", error);
       // Optionally show an error message with Swal or another method
     } finally {
