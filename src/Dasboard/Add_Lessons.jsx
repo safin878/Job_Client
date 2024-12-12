@@ -70,7 +70,7 @@ const Add_Lessons = () => {
                 <label className="label">
                   <span className="label-text">Lesson Number</span>
                 </label>
-                <textarea
+                <input
                   type="text"
                   name="Lesson_Number"
                   placeholder="Lesson Number"

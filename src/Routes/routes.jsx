@@ -13,6 +13,7 @@ import Add_Vocabularies from "./../Dasboard/Add_Vocabularies";
 import LManage from "./../Dasboard/LManage";
 import VManage from "./../Dasboard/VManage";
 import Users from "./../Dasboard/Users";
+import LessonCard from "./../Pages/LessonCard/LessonCard";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/addLessons/:lessonNumber",
+        element: <LessonCard />,
       },
     ],
   },
