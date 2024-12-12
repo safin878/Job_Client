@@ -1,15 +1,13 @@
-import Swal from "sweetalert2";
 import SectionTitle from "../Components/SectionTitle/SectionTitle";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../Hooks/useAxiosSecure/useAxiosSecure";
-
 const LessonsD = () => {
   const axiosSecure = useAxiosSecure();
 
   const { data: Lessons = [], refetch } = useQuery({
-    queryKey: ["Lessons"],
+    queryKey: ["LessonsWithCount"],
     queryFn: async () => {
-      const response = await axiosSecure.get("/addLessons");
+      const response = await axiosSecure.get("/addLessonsWithCount");
       return response.data;
     },
   });
@@ -24,16 +22,16 @@ const LessonsD = () => {
               <th></th>
               <th>Lesson Name</th>
               <th>Lesson Number</th>
-              <th>Vocabulary count</th>
+              <th>Vocabulary Count</th>
             </tr>
           </thead>
           <tbody>
-            {/* Placeholder rows */}
             {Lessons.map((Lesson, index) => (
               <tr key={Lesson._id}>
                 <th>{index + 1}</th>
                 <td>{Lesson.Lesson_Name}</td>
                 <td>{Lesson.Lesson_Number}</td>
+                <td>{Lesson.vocabularyCount}</td>
               </tr>
             ))}
           </tbody>
