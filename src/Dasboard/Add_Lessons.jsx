@@ -5,30 +5,11 @@ import useAxiosSecure from "./../Hooks/useAxiosSecure/useAxiosSecure";
 const Add_Lessons = () => {
   const axiosSecure = useAxiosSecure();
 
-  // const handelAnnouncement = async (e) => {
-  //   e.preventDefault();
-  //   const announce = {
-  //     title: e.target.title.value,
-  //     description: e.target.description.value,
-  //   };
-  //   const res = await axiosSecure.post("/addLessons", announce);
-  //   if (res.data.acknowledged) {
-  //     Swal.fire({
-  //       position: "center",
-  //       icon: "success",
-  //       title: "New Lesson Added",
-  //       showConfirmButton: false,
-  //       timer: 1500,
-  //     });
-  //     e.target.reset();
-  //   }
-  // };
-
   const handelAnnouncement = async (e) => {
     e.preventDefault();
     const announce = {
-      title: e.target.title.value,
-      description: e.target.description.value,
+      Lesson_Name: e.target.Lesson_Name.value,
+      Lesson_Number: e.target.Lesson_Number.value,
     };
 
     try {
@@ -79,7 +60,7 @@ const Add_Lessons = () => {
                 </label>
                 <input
                   type="text"
-                  name="title"
+                  name="Lesson_Name"
                   placeholder="Lesson Name"
                   className="input input-bordered"
                   required
@@ -91,7 +72,7 @@ const Add_Lessons = () => {
                 </label>
                 <textarea
                   type="text"
-                  name="description"
+                  name="Lesson_Number"
                   placeholder="Lesson Number"
                   className="input input-bordered"
                   required
