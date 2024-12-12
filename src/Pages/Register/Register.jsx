@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -65,7 +64,7 @@ const Register = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/");
+        navigate("/lessons");
       }
     } catch (error) {
       Swal.fire({
@@ -84,10 +83,6 @@ const Register = () => {
 
   return (
     <>
-      <Helmet>
-        <title>BuildiFy || SingUp</title>
-      </Helmet>
-
       {loading && <LoadingScreen />}
 
       <div className="h-[75px]"></div>
